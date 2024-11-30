@@ -9,18 +9,20 @@
 
 Code/Syntax highlighter for React Native. Inspired by [react-native-syntax-highlighter](https://github.com/conorhastings/react-native-syntax-highlighter), using [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
 
+This is a fork of [react-native-code-highlighter](https://github.com/gmsgowtham/react-native-code-highlighter), which uses View wrapper instead of ScrollView if you don't need scrolling, includes a small bug fix for line number sections.
+
 ## Installation
 
 #### NPM
 
 ```sh
-npm install react-native-code-highlighter react-syntax-highlighter
+npm install @nguyenviet3057/react-native-code-highlighter react-syntax-highlighter
 ```
 
 #### Yarn
 
 ```sh
-yarn add react-native-code-highlighter react-syntax-highlighter
+yarn add @nguyenviet3057/react-native-code-highlighter react-syntax-highlighter
 ```
 
 > Additional for typescript
@@ -45,7 +47,7 @@ yarn add -D @types/react-syntax-highlighter
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
 | hljsStyle                                                                                              | Highlight.js style imported from `react-syntax-highlighter/dist/esm/styles/hljs`                                  | `{ [key: string]: React.CSSProperties }`                         | false    |
 | textStyle                                                                                              | Style for the text text components. Note: `color` property will be overridden                                     | `StyleProp<TextStyle>`                                           | true     |
-| scrollViewProps                                                                                        | Props for the underlying scroll view. `horizontal` is ignored                                                     | [ScrollViewProps](https://reactnative.dev/docs/scrollview#props) | true     |
+| viewProps                                                                                        | Props for the underlying scroll view. `horizontal` is ignored                                                     | [ViewProps](https://reactnative.dev/docs/view#props) | true     |
 | containerStyle                                                                                         | Deprecated. `containerStyle` for the underlying `ScrollView`. Use `scrollViewProps.contentContainerStyle` instead | `StyleProp<ViewStyle>`                                           | true     |
 | [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Props | Props supported by react-syntax-highlighter. i.e. `language`                                                      |                                                                  |          |
 
@@ -54,7 +56,7 @@ yarn add -D @types/react-syntax-highlighter
 ```tsx
 import React from "react";
 import { StyleSheet } from "react-native";
-import CodeHighlighter from "react-native-code-highlighter";
+import CodeHighlighter from "@nguyenviet3057/react-native-code-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const CODE_STR = `var hello = "world"`;
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-> CodeSandbox: https://codesandbox.io/s/react-native-code-highligher-knfsyx?file=/src/App.js
+> CodeSandbox: https://codesandbox.io/s/react-native-code-highligher-knfsyx?file=/src/App.js (For original repository)
 
 ## Screenshots
 
