@@ -75,17 +75,16 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 	const renderer = (props: rendererProps) => {
 		const { rows } = props;
 		return (
-			<ScrollView
+			<View
 				{...scrollViewProps}
-				horizontal
-				contentContainerStyle={[
+				style={[
 					stylesheet.hljs,
 					scrollViewProps?.contentContainerStyle,
 					containerStyle,
 				]}
 			>
 				<View onStartShouldSetResponder={() => true}>{renderNode(rows)}</View>
-			</ScrollView>
+			</View>
 		);
 	};
 
