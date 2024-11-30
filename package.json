@@ -1,5 +1,5 @@
 {
-  "name": "react-native-code-highlighter",
+  "name": "@nguyenviet3057/react-native-code-highlighter",
   "version": "1.2.3",
   "description": "test",
   "main": "dist/commonjs/index",
@@ -45,7 +45,10 @@
     "code-hightlighter",
     "syntax-highlighter"
   ],
-  "repository": "https://github.com/gmsgowtham/react-native-code-highlighter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmsgowtham/react-native-code-highlighter.git"
+  },
   "author": "Gowtham G <webappsbygowtham@gmail.com> (https://github.com/gmsgowtham)",
   "license": "MIT",
   "bugs": {
@@ -77,7 +80,7 @@
     "pod-install": "0.2.2",
     "react": "18.3.1",
     "react-native": "0.73.4",
-    "react-native-builder-bob": "0.23.2",
+    "react-native-builder-bob": "^0.33.3",
     "react-test-renderer": "18.3.1",
     "release-it": "17.6.0",
     "typescript": "5.6.3"
@@ -145,5 +148,8 @@
     "css-to-react-native": "3.2.0",
     "react-syntax-highlighter": "15.5.0",
     "trim-newlines": "5.0.0"
+  },
+  "directories": {
+    "example": "example"
   }
 }

@@ -1,6 +1,5 @@
 import React, { type FunctionComponent, type ReactNode, useMemo } from "react";
 import {
-	ScrollView,
 	type ScrollViewProps,
 	type StyleProp,
 	StyleSheet,
@@ -33,7 +32,7 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 	children,
 	textStyle,
 	hljsStyle,
-	scrollViewProps,
+	viewProps,
 	containerStyle,
 	...rest
 }) => {
@@ -57,11 +56,39 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 					textStyle,
 					{ color: stylesheet.hljs?.color },
 					getStylesForNode(node),
+					(node.properties?.key as string)?.includes("line-number--") &&
+						StyleSheet.flatten([
+							{
+								textAlign: "right" as
+									| "right"
+									| "auto"
+									| "left"
+									| "center"
+									| "justify"
+									| undefined,
+								minWidth: 36,
+								paddingRight: 16,
+								color: "#242c40",
+							},
+							// StyleSheet.create(node.properties?.style), // This style uses width unit by `em`, so not work
+						]),
 				]);
 				acc.push(
-					<Text style={styles} key={keyPrefixWithIndex}>
-						{renderNode(node.children, `${keyPrefixWithIndex}_child`)}
-					</Text>,
+					node.children?.at(0)?.value ? (
+						<Text style={[styles]} key={keyPrefixWithIndex}>
+							{renderNode(node.children, `${keyPrefixWithIndex}_child`)}
+						</Text>
+					) : (
+						<View
+							style={[
+								{ display: "flex", flexDirection: "row", flexWrap: "wrap" },
+								styles,
+							]}
+							key={keyPrefixWithIndex}
+						>
+							{renderNode(node.children, `${keyPrefixWithIndex}_child`)}
+						</View>
+					),
 				);
 			}
 
@@ -76,10 +103,10 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 		const { rows } = props;
 		return (
 			<View
-				{...scrollViewProps}
+				{...viewProps}
 				style={[
 					stylesheet.hljs,
-					scrollViewProps?.contentContainerStyle,
+					viewProps?.contentContainerStyle,
 					containerStyle,
 				]}
 			>
