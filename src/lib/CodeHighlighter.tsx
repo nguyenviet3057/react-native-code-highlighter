@@ -56,32 +56,22 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 					textStyle,
 					{ color: stylesheet.hljs?.color },
 					getStylesForNode(node),
-					(node.properties?.key as string)?.includes("line-number--") &&
-						StyleSheet.flatten([
-							{
-								textAlign: "right" as
-									| "right"
-									| "auto"
-									| "left"
-									| "center"
-									| "justify"
-									| undefined,
-								minWidth: 36,
-								paddingRight: 16,
-								color: "#242c40",
-							},
-							// StyleSheet.create(node.properties?.style), // This style uses width unit by `em`, so not work
-						]),
+					StyleSheet.create(node.properties?.style), // This style uses width unit by `em`, so not work
 				]);
 				acc.push(
-					node.children?.at(0)?.value ? (
+					node.children.every((node) => node.type === "text") ? (
 						<Text style={[styles]} key={keyPrefixWithIndex}>
-							{renderNode(node.children, `${keyPrefixWithIndex}_child`)}
+							{trimNewlines(node.children.map((node) => node.value).join(""))}
 						</Text>
 					) : (
 						<View
 							style={[
-								{ display: "flex", flexDirection: "row", flexWrap: "wrap" },
+								{
+									display: "flex",
+									flexDirection: "row",
+									flexWrap: "wrap",
+									alignItems: "center",
+								},
 								styles,
 							]}
 							key={keyPrefixWithIndex}
@@ -93,7 +83,11 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 			}
 
 			if (node.value) {
-				acc.push(trimNewlines(String(node.value)));
+				acc.push(
+					<Text key={keyPrefixWithIndex}>
+						{trimNewlines(String(node.value))}
+					</Text>,
+				);
 			}
 
 			return acc;

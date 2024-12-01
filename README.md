@@ -47,9 +47,11 @@ yarn add -D @types/react-syntax-highlighter
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | -------- |
 | hljsStyle                                                                                              | Highlight.js style imported from `react-syntax-highlighter/dist/esm/styles/hljs`                                  | `{ [key: string]: React.CSSProperties }`                         | false    |
 | textStyle                                                                                              | Style for the text text components. Note: `color` property will be overridden                                     | `StyleProp<TextStyle>`                                           | true     |
-| viewProps                                                                                        | Props for the underlying scroll view. `horizontal` is ignored                                                     | [ViewProps](https://reactnative.dev/docs/view#props) | true     |
+| viewProps                                                                                        | Props for the underlying view.                                                     | [ViewProps](https://reactnative.dev/docs/view#props) | true     |
 | containerStyle                                                                                         | Deprecated. `containerStyle` for the underlying `ScrollView`. Use `scrollViewProps.contentContainerStyle` instead | `StyleProp<ViewStyle>`                                           | true     |
-| [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Props | Props supported by react-syntax-highlighter. i.e. `language`                                                      |                                                                  |          |
+| [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter) Props | Props supported by react-syntax-highlighter. i.e. `language`, `showLineNumbers`, `lineNumberStyle`,...                                                      |                                                                  |          |
+
+<strong><span style="color: #facc15;">*Note</span></strong>: You should use `lineNumberStyle` prop to override react-syntax-highlighter default style, because it uses `em` unit which React Native does not support.
 
 ### Example
 
