@@ -60,9 +60,13 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 				]);
 				acc.push(
 					node.children.every((node) => node.type === "text") ? (
-						<Text style={[styles]} key={keyPrefixWithIndex}>
-							{trimNewlines(node.children.map((node) => node.value).join(""))}
-						</Text>
+						node.children.filter((node) => node.value !== "").length > 0 ? (
+							<Text style={[styles]} key={keyPrefixWithIndex}>
+								{trimNewlines(node.children.map((node) => node.value).join(""))}
+							</Text>
+						) : (
+							<></>
+						)
 					) : (
 						<View
 							style={[

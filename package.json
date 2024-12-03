@@ -1,6 +1,6 @@
 {
   "name": "@nguyenviet3057/react-native-code-highlighter",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "test",
   "main": "dist/commonjs/index",
   "module": "dist/module/index",
