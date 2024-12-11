@@ -58,15 +58,19 @@ export const CodeHighlighter: FunctionComponent<CodeHighlighterProps> = ({
 					getStylesForNode(node),
 					StyleSheet.create(node.properties?.style), // This style uses width unit by `em`, so not work
 				]);
+
+				if (
+					node.children.every((node) => node.type === "text") &&
+					node.children.filter((node) => node.value !== "").length === 0
+				) {
+					return acc;
+				}
+
 				acc.push(
 					node.children.every((node) => node.type === "text") ? (
-						node.children.filter((node) => node.value !== "").length > 0 ? (
-							<Text style={[styles]} key={keyPrefixWithIndex}>
-								{trimNewlines(node.children.map((node) => node.value).join(""))}
-							</Text>
-						) : (
-							<></>
-						)
+						<Text style={[styles]} key={keyPrefixWithIndex}>
+							{trimNewlines(node.children.map((node) => node.value).join(""))}
+						</Text>
 					) : (
 						<View
 							style={[
